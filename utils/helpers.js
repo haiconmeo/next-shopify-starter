@@ -1,8 +1,8 @@
 import { createCheckout, updateCheckout } from '@/lib/shopify'
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, doc, where, getDocs,getDoc } from "firebase/firestore";
 import { app, database } from 'api/db_firebase';
 
-export  async function getDocument(collectionName) {
+export  async function getDocuments(collectionName) {
   const dbInstance = collection(database, 'products');
 
   return await getDocs(dbInstance)
@@ -15,13 +15,14 @@ export  async function getDocument(collectionName) {
 }
 
 export  async function getDocumentById(id) {
-  const dbInstance = collection(database, 'products');
+  const docRef = doc(database, "products", id);
 
-  return await getDocument(dbInstance,id)
+  // const dbInstance = collection(database, 'products');
+
+  return await getDoc(docRef)
         .then((data) => {
-            return data.map((item) => {
-                return { ...item, id: item.id }
-            })[0];
+          return {...data.data(),id: data.data().id}
+
         })
 
 }

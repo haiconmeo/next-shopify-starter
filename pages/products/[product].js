@@ -1,8 +1,8 @@
 import { getProductSlugs, getProduct } from '@/lib/shopify'
 import ProductSection from '@/components/ProductSection'
-import {getDocumentById, getDocument} from '@/utils/helpers'
+import {getDocumentById, getDocuments} from '@/utils/helpers'
 function ProductPage({ productData }) {  
-
+  console.log("aaaa",productData)
   return (
     <div className="min-h-screen py-12 sm:pt-20">
       <ProductSection productData={productData} />
@@ -12,7 +12,7 @@ function ProductPage({ productData }) {
 
 export async function getStaticPaths() {
   const collectionName = "products";
-  const productSlugs = await getDocument(collectionName)
+  const productSlugs = await getDocuments(collectionName)
 
   const paths = productSlugs.map((slug) => {    
     const product = String(slug.id)
@@ -28,6 +28,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  console.log("params",params)
   const productData = await getDocumentById(params.product)  
 
   return {
