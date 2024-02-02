@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['doggystickers.vercel.app', 'via.placeholder.com']
+    domains: ['doggystickers.vercel.app', 'hinhphat.com']
   },
 }

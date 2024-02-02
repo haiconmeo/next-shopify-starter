@@ -3,13 +3,12 @@ import Link from 'next/link'
 import Price from '@/components/Price'
 
 function ProductCard({ product }) {
-  console.log("aaaa",product.node.images.edges[0].node)
-  const handle = product.node.handle
-  const title = product.node.title
-  const description = product.node.description
-  const price = product.node.variants.edges[0].node.price
+  const handle = product.id
+  const title = product.title
+  const description = product.description
+  const price = product.price
 
-  const imageNode = product.node.images.edges[0].node
+  const imageNode = product.images[0]
 
   return (
     <Link
@@ -19,9 +18,11 @@ function ProductCard({ product }) {
       <div className="h-120 w-72 rounded shadow-lg mx-auto border border-palette-lighter">
         <div className="h-72 border-b-2 border-palette-lighter relative">
           <Image
-            src={imageNode.originalSrc}
+            src={imageNode}
             alt={imageNode.altText}
             layout="fill"
+            style={{objectFit:"cover"}}
+
             className="transform duration-500 ease-in-out hover:scale-110"
           />
         </div>
@@ -37,7 +38,7 @@ function ProductCard({ product }) {
             rounded-tl-sm triangle"
           >
             <Price
-              currency="$"
+              currency="vnđ"
               num={price}
               numSize="text-lg"
             />

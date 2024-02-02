@@ -1,7 +1,8 @@
 function Price({currency, num, numSize }) {
+  const formattedNum = num.toLocaleString();
   return (
     <>
-      {currency}<span className={numSize}>{num}</span>
+      <span className={numSize}>{formattedNum}</span> {currency}
     </>
   )
 }

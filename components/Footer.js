@@ -11,7 +11,7 @@ function Footer() {
         rel="noreferrer"
         className="text-palette-primary font-bold px-1"
       >
-        Bilal Tahir
+        Haiconmeo
         </a>
     </footer>
   )

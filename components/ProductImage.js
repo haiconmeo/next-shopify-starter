@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 function ProductImage({ images }) {
-  const [mainImg, setMainImg] = useState(images[0].node)
+  const [mainImg, setMainImg] = useState(images[0])
   const ref = useRef()
 
   function scroll(scrollOffset) {
@@ -15,9 +15,11 @@ function ProductImage({ images }) {
     <div className="w-full md:w-1/2 max-w-md border border-palette-lighter bg-white rounded shadow-lg">
       <div className="relative h-96">
         <Image
-          src={mainImg.originalSrc}
+          src={mainImg}
           alt={mainImg.altText}
           layout="fill"
+          style={{objectFit:"cover"}}
+
           className="transform duration-500 ease-in-out hover:scale-105"
         />
       </div>
@@ -42,8 +44,8 @@ function ProductImage({ images }) {
                 onClick={() => setMainImg(imgItem.node)}
               >
                 <Image
-                  src={imgItem.node.originalSrc}
-                  alt={imgItem.node.altText}
+                  src={imgItem.node}
+                  alt={imgItem}
                   layout="fill"
                   className=""
                 />

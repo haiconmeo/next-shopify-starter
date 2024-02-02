@@ -12,7 +12,7 @@ function CartPage() {
   return (
     <div className="container mx-auto mb-20 min-h-screen">
       <SEO title={pageTitle} />
-      <PageTitle text="Your Cart" />
+      <PageTitle text="Giỏ Hàng của bạn" />
       <CartTable 
         cart={cart}
       />

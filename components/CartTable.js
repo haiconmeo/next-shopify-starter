@@ -36,16 +36,16 @@ function CartTable({ cart }) {
             <tr key={item.variantId} className="text-sm sm:text-base text-gray-600 text-center">
               <td className="font-primary font-medium px-4 sm:px-6 py-4 flex items-center">
                 <img
-                  src={item.productImage.originalSrc}
+                  src={item.productImage}
                   alt={item.productImage.altText}
                   height={64}
                   width={64}
                   className={`hidden sm:inline-flex`}
                 />
                 <Link passHref href={`/products/${item.productHandle}`}>
-                  <a className="pt-1 hover:text-palette-dark">
+                  <div className="pt-1 hover:text-palette-dark">
                     {item.productTitle}, {item.variantTitle}
-                  </a>
+                  </div>
                 </Link>
               </td>
               <td className="font-primary font-medium px-4 sm:px-6 py-4">
@@ -63,7 +63,7 @@ function CartTable({ cart }) {
               </td>
               <td className="font-primary text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell">
                 <Price
-                  currency="$"
+                  currency="đ"
                   num={item.variantPrice}
                   numSize="text-lg"
                 />
@@ -88,7 +88,7 @@ function CartTable({ cart }) {
                 <td className="font-primary text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4">Subtotal</td>
                 <td className="font-primary text-lg text-palette-primary font-medium px-4 sm:px-6 py-4">
                   <Price
-                    currency="$"
+                    currency="đ"
                     num={subtotal}
                     numSize="text-xl"
                   />

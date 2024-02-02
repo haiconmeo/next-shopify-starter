@@ -5,7 +5,7 @@ import { useCartContext, useAddToCartContext } from '@/context/Store'
 
 function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
   const [quantity, setQuantity] = useState(1)
-  const [variantId, setVariantId] = useState(variants[0].node.id)
+  const [variantId, setVariantId] = useState(variants[0].id)
   const [variant, setVariant] = useState(variants[0])
   const isLoading = useCartContext()[2]
   const addToCart = useAddToCartContext()
@@ -20,15 +20,15 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
   function handleSizeChange(e) {
     setVariantId(e)
     // send back size change
-    const selectedVariant = variants.filter(v => v.node.id === e).pop()
-    setVariantPrice(selectedVariant.node.price)
+    const selectedVariant = variants.filter(v => v.id === e).pop()
+    setVariantPrice(selectedVariant.price)
 
     // update variant
     setVariant(selectedVariant)
   }
 
   async function handleAddToCart() {
-    const varId = variant.node.id
+    const varId = variant.id
     // update store context
     if (quantity !== '') {
       addToCart({
@@ -36,8 +36,8 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
         productHandle: handle,
         productImage: mainImg,
         variantId: varId,
-        variantPrice: variant.node.price,
-        variantTitle: variant.node.title,
+        variantPrice: variant.price,
+        variantTitle: variant.title,
         variantQuantity: quantity
       })
     }
@@ -55,7 +55,7 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
     <div className="w-full">
       <div className="flex justify-start space-x-2 w-full">
         <div className="flex flex-col items-start space-y-1 flex-grow-0">
-          <label className="text-gray-500 text-base">Qty.</label>
+          <label className="text-gray-500 text-base">Số Lượng</label>
           <input
             type="number"
             inputMode="numeric"
@@ -69,7 +69,7 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
           />
         </div>
         <div className="flex flex-col items-start space-y-1 flex-grow">
-          <label className="text-gray-500 text-base">Size</label>
+          <label className="text-gray-500 text-base">Loại</label>
           <select
             id="size-selector"
             name="size-selector"
@@ -80,11 +80,11 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
             {
               variants.map(item => (
                 <option
-                  id={item.node.id}
-                  key={item.node.id}
-                  value={item.node.id}
+                  id={item.id}
+                  key={item.id}
+                  value={item.id}
                 >
-                  {item.node.title}
+                  {item.title}
                 </option>
               ))
             }

@@ -1,4 +1,30 @@
 import { createCheckout, updateCheckout } from '@/lib/shopify'
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { app, database } from 'api/db_firebase';
+
+export  async function getDocument(collectionName) {
+  const dbInstance = collection(database, 'products');
+
+  return await getDocs(dbInstance)
+        .then((data) => {
+            return data.docs.map((item) => {
+                return { ...item.data(), id: item.id }
+            });
+        })
+
+}
+
+export  async function getDocumentById(id) {
+  const dbInstance = collection(database, 'products');
+
+  return await getDocument(dbInstance,id)
+        .then((data) => {
+            return data.map((item) => {
+                return { ...item, id: item.id }
+            })[0];
+        })
+
+}
 
 export function saveLocalData(cart, checkoutId, checkoutUrl) {
   localStorage.setItem(process.env.NEXT_PUBLIC_LOCAL_STORAGE_NAME, JSON.stringify([cart, checkoutId, checkoutUrl]))
