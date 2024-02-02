@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Price from '@/components/Price'
 
 function ProductCard({ product }) {
-  console.log(product.id)
   const handle = product.id
   const title = product.title
   const description = product.description
