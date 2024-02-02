@@ -4,7 +4,6 @@ import ProductInfo from '@/components/ProductInfo'
 import ProductForm from '@/components/ProductForm'
 
 function ProductDetails({ productData }) {
-  console.log("productData",productData)
   const [variantPrice, setVariantPrice] = useState(productData.variants[0].price)
 
   return (
