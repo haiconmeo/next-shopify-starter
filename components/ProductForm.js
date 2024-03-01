@@ -3,10 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useCartContext, useAddToCartContext } from '@/context/Store'
 
-function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
+function ProductForm({ product }) {
   const [quantity, setQuantity] = useState(1)
-  const [variantId, setVariantId] = useState(variants[0].id)
-  const [variant, setVariant] = useState(variants[0])
   const isLoading = useCartContext()[2]
   const addToCart = useAddToCartContext()
 
@@ -17,27 +15,15 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
     `pt-3 pb-2 bg-palette-primary text-white w-full mt-2 rounded-sm font-primary font-semibold text-xl flex 
                       justify-center items-baseline  hover:bg-palette-dark`
 
-  function handleSizeChange(e) {
-    setVariantId(e)
-    // send back size change
-    const selectedVariant = variants.filter(v => v.id === e).pop()
-    setVariantPrice(selectedVariant.price)
-
-    // update variant
-    setVariant(selectedVariant)
-  }
 
   async function handleAddToCart() {
-    const varId = variant.id
-    // update store context
     if (quantity !== '') {
       addToCart({
-        productTitle: title,
-        productHandle: handle,
-        productImage: mainImg,
-        variantId: varId,
-        variantPrice: variant.price,
-        variantTitle: variant.title,
+        productTitle: product.title,
+        productImage: product.image,
+        variantId: product.id,
+        variantPrice: product.price,
+        variantTitle: product.title,
         variantQuantity: quantity
       })
     }
@@ -68,7 +54,7 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
             className="text-gray-900 form-input border border-gray-300 w-16 rounded-sm focus:border-palette-light focus:ring-palette-light"
           />
         </div>
-        <div className="flex flex-col items-start space-y-1 flex-grow">
+        {/* <div className="flex flex-col items-start space-y-1 flex-grow">
           <label className="text-gray-500 text-base">Loại</label>
           <select
             id="size-selector"
@@ -89,7 +75,7 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
               ))
             }
           </select>
-        </div>
+        </div> */}
       </div>
       <button
         className={atcBtnStyle}

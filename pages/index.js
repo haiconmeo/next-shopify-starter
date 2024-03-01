@@ -1,9 +1,6 @@
 import StoreHeading from '@/components/StoreHeading'
 import ProductListings from '@/components/ProductListings'
-import { getAllProductsInCollection } from '@/lib/shopify'
-import {getDocuments} from '@/utils/helpers'
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { app, database } from 'api/db_firebase';
+import {getRecords} from '@/utils/airtable'
 function IndexPage({ products }) {
   return (
     <div className="mx-auto max-w-6xl">
@@ -14,8 +11,8 @@ function IndexPage({ products }) {
 }
 
 export async function getStaticProps() {
-  const collectionName = "products";
-  const products = await getDocuments(collectionName)
+  const collectionName = "Product";
+  const products = await getRecords(collectionName)
   // const products = await getAllProductsInCollection()
   return {
     props: {

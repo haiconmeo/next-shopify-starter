@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 function ProductImage({ images }) {
+  images = JSON.parse(images)
+
   const [mainImg, setMainImg] = useState(images[0])
   const ref = useRef()
 
@@ -16,10 +18,8 @@ function ProductImage({ images }) {
       <div className="relative h-96">
         <Image
           src={mainImg}
-          alt={mainImg.altText}
+          alt={mainImg}
           layout="fill"
-          style={{objectFit:"cover"}}
-
           className="transform duration-500 ease-in-out hover:scale-105"
         />
       </div>
@@ -41,13 +41,13 @@ function ProductImage({ images }) {
               <button
                 key={index}
                 className="relative w-40 h-32 flex-shrink-0 rounded-sm "
-                onClick={() => setMainImg(imgItem.node)}
+                onClick={() => setMainImg(imgItem)}
               >
                 <Image
-                  src={imgItem.node}
+                  src={imgItem}
                   alt={imgItem}
                   layout="fill"
-                  className=""
+                  className="transform duration-500 ease-in-out hover:scale-105"
                 />
               </button>
             ))

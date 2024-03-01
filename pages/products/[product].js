@@ -1,6 +1,5 @@
-import { getProductSlugs, getProduct } from '@/lib/shopify'
 import ProductSection from '@/components/ProductSection'
-import {getDocumentById, getDocuments} from '@/utils/helpers'
+import {getRecords, getRecord} from '@/utils/airtable'
 function ProductPage({ productData }) {  
   return (
     <div className="min-h-screen py-12 sm:pt-20">
@@ -10,8 +9,8 @@ function ProductPage({ productData }) {
 }
 
 export async function getStaticPaths() {
-  const collectionName = "products";
-  const productSlugs = await getDocuments(collectionName)
+  const collectionName = "Product";
+  const productSlugs = await getRecords(collectionName)
 
   const paths = productSlugs.map((slug) => {    
     const product = String(slug.id)
@@ -26,9 +25,9 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
-  const productData = await getDocumentById(params.product)  
-
+export async function getStaticProps({ params }) {  
+  const collectionName = "Product";
+  const productData = await getRecord(collectionName,params.product)  
   return {
     props: {
       productData,

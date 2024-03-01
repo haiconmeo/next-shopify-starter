@@ -12,7 +12,9 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@next/swc-darwin-arm64": "^14.1.0",
     "@tailwindcss/forms": "^0.3.2",
+    "airtable": "^0.12.2",
     "autoprefixer": "^10.0.4",
     "firebase": "^10.8.0",
     "next": "latest",
@@ -22,5 +24,9 @@
     "react-dom": "^18",
     "tailwindcss": "^2.0.2",
     "webpack": "^5.24.2"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.61",
+    "typescript": "5.3.3"
   }
 }

@@ -14,12 +14,12 @@ function CartTable({ cart }) {
   useEffect(() => {
     setCartItems(cart)
     setSubtotal(getCartSubTotal(cart))
+    console.log(cartItems)
   }, [cart])
-
   function updateItem(id, quantity) {
     updateCartQuantity(id, quantity)
   }
-
+  console.log(cartItems)
   return (
     <div className="min-h-80 max-w-2xl my-4 sm:my-8 mx-auto w-full">
       <table className="mx-auto">
@@ -85,7 +85,7 @@ function CartTable({ cart }) {
               :
               <tr className="text-center">
                 <td></td>
-                <td className="font-primary text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4">Subtotal</td>
+                <td className="font-primary text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4">Đơn H</td>
                 <td className="font-primary text-lg text-palette-primary font-medium px-4 sm:px-6 py-4">
                   <Price
                     currency="đ"

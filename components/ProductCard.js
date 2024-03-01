@@ -8,7 +8,7 @@ function ProductCard({ product }) {
   const description = product.description
   const price = product.price
 
-  const imageNode = product.images[0]
+  const imageNode = product.image
 
   return (
     <Link
@@ -21,7 +21,7 @@ function ProductCard({ product }) {
             src={imageNode}
             alt={imageNode.altText}
             layout="fill"
-            style={{objectFit:"cover"}}
+            // style={{objectFit:"cover"}}
 
             className="transform duration-500 ease-in-out hover:scale-110"
           />
